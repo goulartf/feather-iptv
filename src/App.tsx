@@ -1,26 +1,40 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, {useCallback, useEffect, useState} from 'react';
+import parser from 'iptv-playlist-parser';
+import * as _ from 'underscore';
+import ReactPlayer from 'react-player/lazy';
 import './App.css';
+import {
+  useFocusable,
+  init,
+  FocusContext,
+  FocusDetails,
+  FocusableComponentLayout,
+  KeyPressDetails
+} from '@noriginmedia/norigin-spatial-navigation';
+import MenuItem from "./pages/MenuItem";
+import Menu from "./pages/Menu";
+import LiveTV from "./pages/LiveTV";
 
 function App() {
+
+  const MODULE_MENU = 'MENU';
+  const MODULE_TV_LIVE = 'TV_LIVE';
+  const MODULE_MOVIES = 'MOVIES';
+
+  const [module, setModule] = useState<string>(MODULE_MENU);
+
+  init();
+
+  const onSelectMenu = (module: string) => {
+    setModule(module);
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className={'w-full h-full'}>
+      { module === MODULE_MENU && <Menu focusKey="menu" onEnterPress={onSelectMenu} /> }
+      { module === MODULE_TV_LIVE && <LiveTV focusKey="menu"/> }
     </div>
-  );
+  )
 }
 
 export default App;
