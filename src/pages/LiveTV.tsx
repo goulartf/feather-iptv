@@ -23,7 +23,7 @@ function LiveTV({focusKey, onEnterPress}: any) {
   // init();
 
   useEffect(() => {
-    fetch(process.env.PUBLIC_URL + '/list/playlist.txt')
+    fetch(process.env.PUBLIC_URL + '/list/playlist_half.txt')
       .then(res => res.text())
       .then(data => {
         const list: any = parser.parse(data);
