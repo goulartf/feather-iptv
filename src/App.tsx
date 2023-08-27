@@ -32,7 +32,7 @@ function App() {
   return (
     <div className={'w-full h-full bg-gray-900'}>
       { module === MODULE_MENU && <Menu focusKey="menu" onEnterPress={onSelectMenu} /> }
-      { module === MODULE_TV_LIVE && <LiveTV focusKey="menu"/> }
+      { module === MODULE_TV_LIVE && <LiveTV /> }
     </div>
   )
 }

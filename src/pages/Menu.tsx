@@ -71,7 +71,7 @@ function Menu({onEnterPress}: any) {
 
   return (
     <FocusContext.Provider value={focusKey}>
-      <div className={'flex justify-between mx-6 mt-10 mb-4'}>
+      <div className={'flex justify-between mx-6 pt-10 mb-4'}>
         <div className={`flex`}>
           <Feather color={'white'} size={36}/>
           <h1 className={'text-white pl-4'}>Feather IPTV</h1>
