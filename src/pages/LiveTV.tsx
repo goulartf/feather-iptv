@@ -14,6 +14,8 @@ import LoaderCircle from "./LoaderCircle";
 // @ts-ignore
 import XMLParser from 'react-xml-parser';
 
+let player: ReactPlayer | null = null;
+
 function Menu({channelCategories, onEnterPress, setMainLoader}: any) {
   const [itemActive, setItemActive] = useState<string | null>(null);
 
@@ -124,8 +126,6 @@ function Menu3({channel, onEnterPress, channelSelected, channelSchedule}: any) {
   } = useFocusable({
     focusable: true,
   });
-
-  let player: ReactPlayer | null = null;
 
   useEffect(() => {
     focusSelf();
@@ -383,9 +383,13 @@ function LiveTV() {
 
   }, [channels]);
 
-  const onChannelResolutionPress = useCallback((channel: any) => {
-    setChannelSelected(channel);
-  }, [channel]);
+  const onChannelResolutionPress = useCallback((_channel: any) => {
+    if(_channel.name === channelSelected?.name){
+      handleClickFullscreen(player);
+    }
+
+    setChannelSelected(_channel);
+  }, [channelSelected]);
 
   window.addEventListener('keydown', (event: KeyboardEvent) => {
     if(event.keyCode === 1009 || event.keyCode === 8){
