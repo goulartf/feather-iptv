@@ -13,7 +13,7 @@ import {
 } from '@noriginmedia/norigin-spatial-navigation';
 import MenuItem from "./pages/MenuItem";
 import Menu from "./pages/Menu";
-import LiveTV from "./pages/LiveTV";
+import LiveTV from "./pages/LiveTv/LiveTV";
 
 function App() {
 
