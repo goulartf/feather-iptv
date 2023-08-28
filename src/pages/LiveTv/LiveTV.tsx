@@ -26,7 +26,7 @@ function LiveTV() {
   useEffect(() => {
     const fetchData = async () => {
       fetch(process.env.PUBLIC_URL + '/list/playlist_half.txt')
-      // fetch(`http://pfsv.io/get.php?username=3795809864&password=52673&type=m3u_plus&output=hls`)
+      // fetch(`http://pfsv.io/get.php?username=xxx&password=xxx&type=m3u_plus&output=hls`)
         .then(res => res.text())
         .then(data => {
 
