@@ -30,7 +30,8 @@ function LiveTV() {
         .then(res => res.text())
         .then(data => {
 
-          fetch(process.env.PUBLIC_URL + '/list/epg_full.xml')
+          fetch(process.env.PUBLIC_URL + '/list/epg.xml')
+
           // fetch('http://epg.pfsv.io')
             .then(res => res.text())
             .then(dataXML => {

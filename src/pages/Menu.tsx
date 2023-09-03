@@ -1,16 +1,19 @@
 import {FocusContext, useFocusable} from "@noriginmedia/norigin-spatial-navigation";
 import React, {useEffect} from "react";
 import MenuCard from "./MenuCard";
-import {Feather, Power, Settings, User} from 'react-feather';
+import {Feather, Power, Settings, User as UserIcon} from 'react-feather';
+import Modal from "../componentes/Modal";
+import UserForm from "./UserForm";
 
 
 function UserAction({onEnterPress}: any) {
   const {ref, focused} = useFocusable({
-    focusable: true
+    focusable: true,
+    onEnterPress
   });
 
   return <div ref={ref}>
-    <User color={'white'} size={focused ? 44 : 36} className={'ml-3'}/>
+    <UserIcon color={'white'} size={focused ? 44 : 36} className={'ml-3'}/>
   </div>;
 };
 
@@ -35,6 +38,8 @@ function PowerAction({onEnterPress}: any) {
 };
 
 function Menu({onEnterPress}: any) {
+  const [showModalUserForm, setShowModalUserForm] = React.useState(false);
+
   const {
     ref,
     focusSelf,
@@ -69,8 +74,17 @@ function Menu({onEnterPress}: any) {
     focusSelf();
   }, [focusSelf]);
 
+  const UserActionEnterPress = () => {
+    setShowModalUserForm(true);
+  }
+
+  const closeModal = () => {
+    setShowModalUserForm(false);
+  }
+
   return (
     <FocusContext.Provider value={focusKey}>
+      { showModalUserForm && <Modal> <UserForm  cancelAction={closeModal} /> </Modal>}
       <div className={'flex justify-between mx-6 pt-10 mb-4'}>
         <div className={`flex`}>
           <Feather color={'white'} size={36}/>
@@ -78,7 +92,7 @@ function Menu({onEnterPress}: any) {
         </div>
         <div className={`flex`}>
           <PowerAction/>
-          <UserAction/>
+          <UserAction onEnterPress={UserActionEnterPress}/>
           <SettingsAction/>
         </div>
       </div>
